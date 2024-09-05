@@ -1,0 +1,21 @@
+.footer {
+  &__mobile {
+    @apply flex justify-between sticky bottom-0 z-50 py-[25px] px-[41px] bg-white;
+  }
+
+  &__home {
+    @apply w-6 h-6;
+  }
+
+  &__heart {
+    @apply w-6 h-6;
+  }
+
+  &__user {
+    @apply w-6 h-6;
+  }
+
+  &__history {
+    @apply w-7 h-7;
+  }
+}

@@ -1,0 +1,51 @@
+.order {
+  &__main {
+    @apply bg-[#F5F5F8] min-h-screen;
+  }
+
+  &__title {
+    @apply text-[34px] mb-[45px] font-semibold;
+  }
+
+  &__header {
+    @apply mb-[42px] flex;
+  }
+
+  &__header-title {
+    @apply mx-auto text-[18px] font-semibold;
+  }
+
+  &__address {
+    &-header {
+      @apply flex justify-between;
+    }
+
+    &-label {
+      @apply text-[17px] pl-[4px] font-semibold;
+    }
+
+    &-change {
+      @apply text-[15px] text-[#F47B0A] font-normal;
+    }
+  }
+
+  &__payment {
+    &-container {
+      margin-bottom: 42px;
+    }
+
+    &-header {
+      @apply text-[17px] mb-[20px] pl-[4px] font-semibold;
+    }
+  }
+
+  &__deliverly {
+    &-container {
+      margin-bottom: 42px;
+    }
+
+    &-header {
+      @apply text-[17px] mb-[20px] pl-[4px] font-semibold;
+    }
+  }
+}

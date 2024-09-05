@@ -1,0 +1,57 @@
+.detail {
+  &__main {
+    @apply justify-center mb-[20px] flex;
+  }
+
+  &__back-icon {
+    @apply h-[12px] w-1.5;
+  }
+
+  &__banner-image {
+    @apply w-[200px] h-[200px] flex items-center;
+  }
+
+  &__img-container {
+    @apply flex;
+  }
+
+  &__veg-title {
+    @apply -mt-[3px] text-[#0B6623] ml-2;
+  }
+
+  &__veg-icon {
+    @apply w-5 h-5;
+  }
+
+  &__nonveg-icon {
+    @apply w-5 h-5;
+  }
+
+  &__title {
+    @apply flex items-center mb-2 justify-between;
+  }
+
+  &__heart {
+    @apply w-[20px] h-[20px] mt-2;
+  }
+
+  &__title-content {
+    @apply text-2xl font-semibold mt-2;
+  }
+
+  &__price {
+    @apply text-lg font-semibold text-[#FA4A0C] mb-2;
+  }
+
+  &__description {
+    @apply text-base mb-10;
+  }
+
+  &__ratings {
+    @apply mb-3;
+  }
+
+  &__btn {
+    @apply bg-primary text-white  font-bold rounded-[30px] px-[90px] text-xl py-[16px] hover:bg-white hover:text-primary;
+  }
+}

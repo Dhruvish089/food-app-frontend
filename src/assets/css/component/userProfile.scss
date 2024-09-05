@@ -1,0 +1,19 @@
+.profile {
+  &__layout {
+    @apply flex border-white rounded-xl bg-white p-4 mb-7;
+  }
+
+  &__image {
+    max-height: 100px;
+    max-width: 91px;
+    @apply h-fit w-[max] rounded-lg;
+  }
+
+  &__content {
+    @apply pl-4;
+  }
+
+  &__content > :first-child {
+    @apply mt-2 text-[18px] font-semibold;
+  }
+}

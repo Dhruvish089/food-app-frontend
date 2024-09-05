@@ -1,0 +1,13 @@
+.profile {
+  &__option {
+    @apply flex justify-between p-3.5 border border-white bg-white mb-[27px] rounded-2xl;
+  }
+
+  &__option--image {
+    @apply w-[6px] h-[12px] mt-2;
+  }
+
+  &__option > p {
+    @apply text-[18px] font-semibold;
+  }
+}
