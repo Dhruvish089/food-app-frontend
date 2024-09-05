@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:5000";
+const baseUrl = "http://3.111.137.21:5555";
 
 let endPoints = {
   signup: baseUrl + "/api/users/signup",
