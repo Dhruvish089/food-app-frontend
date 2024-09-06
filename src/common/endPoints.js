@@ -1,4 +1,4 @@
-const baseUrl = "http://3.111.137.21:5555";
+const baseUrl = "https://food.hashtechy.space";
 
 let endPoints = {
   signup: baseUrl + "/api/users/signup",
