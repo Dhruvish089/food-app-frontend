@@ -11,9 +11,8 @@ const axiosProvider = async (data) => {
     },
   };
 
-  console.log("env console ==> ", process.env.REACT_APP_BASE_URL)
-  let apiURL = `${process.env.REACT_APP_BASE_URL}${config.endpoint}`;
-console.log("api url console ==> ", apiURL)
+  let apiURL = config.apiURL;
+
   if (config && config.queryString) {
     apiURL += config.queryString;
   }
