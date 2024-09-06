@@ -1,4 +1,4 @@
-const baseUrl = "https://food.hashtechy.space";
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 let endPoints = {
   signup: baseUrl + "/api/users/signup",
