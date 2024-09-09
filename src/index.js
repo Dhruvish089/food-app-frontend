@@ -8,7 +8,12 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import './main.scss';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions:{
+    refetchOnWindowFocus: false
+  }
+});
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
