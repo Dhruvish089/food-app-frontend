@@ -16,7 +16,7 @@ const QuantityCounter = ({
   return (
     <div className="item-card__card-main">
       <img
-        src={`http://localhost:5000${image}`}
+        src={`${process.env.REACT_APP_BASE_URL}${image}`}
         alt={"img"}
         className="item-card__card-image"
       />

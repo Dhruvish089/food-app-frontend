@@ -146,7 +146,7 @@ const DetailPage = () => {
           <img
             src={
               foodData?.foodImage
-                ? `http://localhost:5000${foodData?.foodImage}`
+                ? `${process.env.REACT_APP_BASE_URL}${foodData?.foodImage}`
                 : image1
             }
             alt="banner-image"

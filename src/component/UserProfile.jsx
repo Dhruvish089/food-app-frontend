@@ -20,7 +20,7 @@ const UserProfile = ({
   return (
     <div className="profile__layout">
       <img
-        src={userProfile ? `http://localhost:5000${userProfile}` : profileIcon}
+        src={userProfile ? `${process.env.REACT_APP_BASE_URL}${userProfile}` : profileIcon}
         alt="profile-pic"
         className="profile__image"
       />

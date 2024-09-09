@@ -12,7 +12,7 @@ const SearchCard = ({ id, name, foodImage, price }) => {
         onClick={() => navigate(`/detail-page/${id}`)}
       >
         <img
-          src={foodImage ? `http://localhost:5000${foodImage}` : image}
+          src={foodImage ? `${process.env.REACT_APP_BASE_URL}${foodImage}` : image}
           className="search__card--image"
         />
 

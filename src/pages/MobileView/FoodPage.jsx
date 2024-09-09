@@ -56,7 +56,7 @@ const FoodPage = () => {
         <div className="food__body">
           <div className="food__banner-container">
             <img 
-            src={ foodData?.foodImage ? `http://localhost:5000${foodData?.foodImage}` : bannerImage} 
+            src={ foodData?.foodImage ? `${process.env.REACT_APP_BASE_URL}${foodData?.foodImage}` : bannerImage} 
             alt="food-img" 
             className="food__banner-img" 
             />
