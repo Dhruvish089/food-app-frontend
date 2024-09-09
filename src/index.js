@@ -10,7 +10,9 @@ import './main.scss';
 
 const queryClient = new QueryClient({
   defaultOptions:{
-    refetchOnWindowFocus: false
+    queries:{
+      refetchOnWindowFocus: false
+    }
   }
 });
 
