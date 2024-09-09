@@ -33,7 +33,7 @@ const Body = () => {
   });
 
   const { data: foodItems } = useQuery({
-    queryKey: ['fetchData', category, currentPage, pageCount, wishlist, cartData],
+    queryKey: ['fetchData', category, currentPage, wishlist, cartData],
     queryFn: async () => {
       const response = await axiosProvider({
         method: "GET",
@@ -42,7 +42,6 @@ const Body = () => {
       })
 
       setTotalCategory(response?.data?.category);
-      handlePageCount(response?.data?.data.totalPage);
 
       response.data.data.data.map((items) => {
         const isPresent = wishlist.find(data => data === items.id)
@@ -66,16 +65,6 @@ const Body = () => {
     retry: 0,
     placeholderData: keepPreviousData,
   })
-
-  const handlePageCount = (totalPage) => {
-    let page = [];
-    let count = 1;
-    while (count <= totalPage) {
-      page.push(count);
-      count++;
-    }
-    setPageCount(page);
-  };
 
   const handleCreateWishlist = useMutation({
     mutationKey: ['createWishlist'],
