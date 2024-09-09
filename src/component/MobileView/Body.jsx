@@ -3,26 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import endPoints from "../../common/endPoints";
-import {
-  addToWishlist,
-  deleteWishlist,
-} from "../../feature/wishlist/wishlistSlice";
+import { addToWishlist, deleteWishlist } from "../../feature/wishlist/wishlistSlice";
 import axiosProvider from "../../common/axiosProvider";
 import Paginate from "./Paginate";
 import SearchBar from "./SeachBar";
 import Title from "./Title";
 import Card from "./Card";
 import { dataTagSymbol, keepPreviousData } from "@tanstack/react-query";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { handleToast } from "../../lib/GlobalMethods";
 import Toast from "./Toast";
 import "swiper/css";
 import { addToCart } from "../../feature/cart/cartSlice";
 
 const Body = () => {
-  const wishlist = useSelector((state) => state.wishlist.wishlist);
-  const cartData = useSelector((state) => state.cart.cart);
-  const cartCount = useSelector((state) => state.cart.cartCount);
+  const wishlist = useSelector(state => state.wishlist.wishlist)
+  const cartData = useSelector(state => state.cart.cart)
+  const cartCount = useSelector(state => state.cart.cartCount)
   const [category, setCategory] = useState("Foods");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState([1]);
@@ -36,59 +33,71 @@ const Body = () => {
   });
 
   const { data: foodItems } = useQuery({
-    queryKey: ["fetchData", category, currentPage, wishlist, cartData],
+    queryKey: ['fetchData', category, currentPage, pageCount, wishlist, cartData],
     queryFn: async () => {
       const response = await axiosProvider({
         method: "GET",
         apiURL: endPoints.getAllFood,
         params: { category, page: currentPage },
-      });
+      })
 
+      setTotalCategory(response?.data?.category);
+      handlePageCount(response?.data?.data.totalPage);
+
+      response.data.data.data.map((items) => {
+        const isPresent = wishlist.find(data => data === items.id)
+        const isInCart = cartData.find(data => data === items.id)
+        isPresent ? items.is_in_wishlist = true : <></>
+        isInCart ? items.is_in_cart = true : items.is_in_cart = false;
+        return items;
+      })
+
+      let totalPage = response?.data?.data.totalPage;
       let page = [];
       let count = 1;
       while (count <= totalPage) {
         page.push(count);
         count++;
       }
-
       setPageCount(page);
-      setTotalCategory(response?.data?.category);
 
-      response.data.data.data.map((items) => {
-        const isPresent = wishlist.find((data) => data === items.id);
-        const isInCart = cartData.find((data) => data === items.id);
-        isPresent ? (items.is_in_wishlist = true) : <></>;
-        isInCart ? (items.is_in_cart = true) : (items.is_in_cart = false);
-        return items;
-      });
-
-      return response.data.data.data;
+      return response.data.data.data
     },
     retry: 0,
     placeholderData: keepPreviousData,
-  });
+  })
+
+  const handlePageCount = (totalPage) => {
+    let page = [];
+    let count = 1;
+    while (count <= totalPage) {
+      page.push(count);
+      count++;
+    }
+    setPageCount(page);
+  };
 
   const handleCreateWishlist = useMutation({
-    mutationKey: ["createWishlist"],
+    mutationKey: ['createWishlist'],
     mutationFn: async (food_id) => {
       return await axiosProvider({
         method: "POST",
         apiURL: endPoints.createWishlist,
         params: { food_id },
         navigate,
-      });
+      })
     },
     onSuccess: (response) => {
       dispatch(addToWishlist(response?.data?.food_id));
-      handleToast(setToast, response);
+      handleToast(setToast, response)
     },
     onError: (error) => {
-      handleToast(setToast, error.response);
-    },
-  });
+      handleToast(setToast ,error.response)  
+    }
+  })
 
   const handleDeleteWishlist = useMutation({
-    mutationKey: ["deleteWishlist"],
+    mutationKey: ['deleteWishlist'],
     mutationFn: async (food_id) => {
       return await axiosProvider({
         method: "DELETE",
@@ -99,12 +108,12 @@ const Body = () => {
     },
     onSuccess: (response) => {
       dispatch(deleteWishlist(response.data.food_id));
-      handleToast(setToast, response);
+      handleToast(setToast, response)
     },
     onError: (error) => {
-      handleToast(setToast, error.response);
-    },
-  });
+      handleToast(setToast, error.response)  
+    }
+  })
 
   const createCart = async (foodId) => {
     try {
@@ -114,15 +123,15 @@ const Body = () => {
         navigate,
         params: { foodId },
       });
-
-      if (response?.status === 200) {
-        handleToast(setToast, response);
-        const isInWishlist = wishlist.find((data) => data === foodId);
-        isInWishlist ? dispatch(deleteWishlist(foodId)) : <></>;
-        dispatch(addToCart(foodId));
+      
+      if(response?.status === 200){
+        handleToast(setToast, response)
+        const isInWishlist = wishlist.find(data => data === foodId)
+        isInWishlist ? dispatch(deleteWishlist(foodId)) : <></>
+        dispatch(addToCart(foodId))
       }
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
   };
 
